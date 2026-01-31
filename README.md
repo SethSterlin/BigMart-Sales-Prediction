@@ -149,7 +149,7 @@ The following visualizations highlight the **spread, skewness, and presence of o
 
 These insights informed subsequent **feature engineering and model selection**, ensuring that the prediction model captures both typical and exceptional sales behaviors.
 
-### Handling Missing Values
+### Exploratory Data Analysis: Handling Missing Values
 
 Before building predictive models, missing values were carefully examined and handled to ensure data quality and reliable model performance.
 
