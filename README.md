@@ -502,3 +502,76 @@ This highlights the importance of distribution strategy over individual product 
 Optimizing outlet type, store size, and placement strategy has a greater impact than fine-tuning individual product features.
 
 This insight supports strategic decisions around store expansion, product placement, and channel optimization.
+
+## Model Comparison: Linear Regression vs XGBoost
+
+This project compares a traditional **Linear Regression** model with an advanced **XGBoost Regressor** to evaluate their effectiveness in predicting retail sales in a real-world business dataset.
+
+### 🔹 Linear Regression (Baseline Model)
+
+**Purpose:**  
+Linear Regression is used as a baseline due to its simplicity and strong interpretability.
+
+**Performance (Test Set):**
+- **R²**   : -0.53  
+- **MAE**  : 1,720  
+- **RMSE** : 2,174  
+
+**Observations:**
+- The negative R² indicates that the model performs worse than predicting the mean sales value.
+- Errors are large, especially for high-sales observations.
+- Residual plots show increasing variance as predicted sales increase (heteroscedasticity).
+
+**Limitations:**
+- Assumes a **linear relationship** between features and sales.
+- Cannot capture **non-linear effects**, **feature interactions**, or **demand spikes**.
+- Struggles with high-sales outlets where business dynamics are more complex.
+
+📌 **Business Interpretation:**  
+Linear Regression is useful for explaining basic relationships (e.g., outlet type impact) but is not reliable for accurate sales forecasting in real retail environments.
+
+#### XGBoost Regressor (Advanced Model)
+
+**Purpose:**  
+XGBoost is applied to overcome the limitations of linear models by learning non-linear patterns and interactions between features.
+
+**Performance (Test Set):**
+- **R²**   : 0.58  
+- **MAE**  : 798  
+- **RMSE** : 1,138  
+
+**Performance (Train Set):**
+- **R²**   : 0.68  
+- **RMSE** : 964  
+
+**Observations:**
+- XGBoost reduces prediction error by nearly **50%** compared to Linear Regression.
+- The model captures high-sales behavior more effectively.
+- Train and test performance are closely aligned, indicating good generalization.
+
+**Strengths:**
+- Captures **non-linear relationships**
+- Learns **interaction effects** between product, outlet, and location features
+- Robust to outliers and skewed sales distributions
+
+📌 **Business Interpretation:**  
+XGBoost provides significantly more reliable sales forecasts, especially for high-performing outlets and complex demand patterns.
+
+#### Side-by-Side Comparison
+
+| Aspect | Linear Regression | XGBoost |
+|------|------------------|--------|
+| Model Type | Parametric | Tree-based Ensemble |
+| Linearity Assumption | Required | Not Required |
+| Handles Non-linearity | ❌ | ✅ |
+| Handles Feature Interaction | ❌ | ✅ |
+| Test R² | -0.53 | 0.58 |
+| Test RMSE | 2,174 | 1,138 |
+| Interpretability | High | Medium |
+| Predictive Power | Low | High |
+
+#### Final Conclusion
+
+- **Linear Regression** is suitable as a baseline and for high-level business interpretation.
+- **XGBoost** is far superior for predictive accuracy and real-world deployment.
+- Retail sales behavior is inherently non-linear and driven by complex interactions, making tree-based models a better choice.
