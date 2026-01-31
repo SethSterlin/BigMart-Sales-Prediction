@@ -264,6 +264,10 @@ To assess multicollinearity among key numerical features, Variance Inflation Fac
 - **`Item_Weight`** and **`Item_MRP`** exhibit moderate correlation with other features, but remain within an acceptable range.
 - Downstream models (Linear Regression and XGBoost) could learn from realistic and business-consistent inputs
 
+### Dealing with Categorical Variables
+
+Converted categorical variables into dummy variables (0 and 1) using one-hot encoding, where each category is represented as a binary column, with one category dropped as a baseline to prevent multicollinearity.
+
 ---
 
 ## Analysis Methodology
