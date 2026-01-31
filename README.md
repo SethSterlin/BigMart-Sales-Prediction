@@ -22,7 +22,10 @@ This project aims to bridge that gap by combining business analysis and machine 
 
 ## Data Structure, Initial Checks, and Key Concepts
 
-### Dataset Structure
+### Dataset Used
+
+[BigMart Sales Data](https://www.kaggle.com/datasets/brijbhushannanda1979/bigmart-sales-data/data)
+
 The dataset consists of **8,523 transaction-level records** representing product sales across multiple retail outlets.  
 Each row corresponds to the sales performance of a specific product within a particular outlet.
 
