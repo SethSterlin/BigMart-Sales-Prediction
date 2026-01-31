@@ -395,7 +395,7 @@ The XGBoost model was configured with carefully selected hyperparameters to bala
 - **random_state = 42**  
   Ensures reproducibility.
 
-#### Model Training
+#### XGBoost Model Training
 
 The model was trained using the training dataset:
 
@@ -409,3 +409,24 @@ Predictions were generated for both training and test sets to evaluate performan
 y_hat_train = regressor.predict(x_train)
 y_hat_test  = regressor.predict(x_test)
 ```
+
+![Dataset Overview](https://github.com/SethSterlin/BigMart-Sales-Prediction/blob/main/XGB%20scatter.png)
+
+- Each point represents a single product–outlet observation.
+- The dashed diagonal line (y = x) represents a **perfect prediction**, where predicted sales equal actual sales.
+
+**Key Observations**
+
+- Most data points are closely clustered around the diagonal line, indicating **strong predictive alignment** between actual and predicted values.
+- The model performs well across **low to medium sales ranges**, where predictions closely track actual outcomes.
+- Compared to Linear Regression, XGBoost shows **reduced underprediction** in higher sales segments.
+- Although some dispersion remains at very high sales levels, the overall error spread is more stable.
+
+**Business Interpretation**
+
+- XGBoost captures **non-linear demand patterns** that commonly occur in retail sales data.
+- The model is better suited for forecasting sales in **high-performing outlets**, where Linear Regression struggled due to its linear assumptions.
+- This improvement supports more reliable decision-making for:
+  - Product launch forecasting
+  - Inventory planning
+  - Outlet performance evaluation
