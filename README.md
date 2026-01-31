@@ -360,4 +360,52 @@ XGBoost (Extreme Gradient Boosting) is a **tree-based ensemble model** that over
 - **Handles outliers better** by learning decision boundaries instead of fitting a single global line.
 - Provides **feature importance scores**, allowing continued business interpretation.
 
-### 
+### XGBoost Model Training & Evaluation
+
+After identifying the limitations of Linear Regression, an **XGBoost Regressor** was implemented to capture non-linear relationships and feature interactions in sales data.
+
+**Model Initialization**
+
+The XGBoost model was configured with carefully selected hyperparameters to balance model complexity, generalization, and training stability:
+
+- **n_estimators = 300**  
+  Number of boosting trees. More trees allow the model to learn complex patterns.
+
+- **learning_rate = 0.05**  
+  Controls how much each tree contributes to the final prediction. A lower value improves generalization.
+
+- **max_depth = 4**  
+  Limits tree depth to prevent overfitting while still capturing interactions.
+
+- **min_child_weight = 5**  
+  Prevents the model from learning patterns based on very small sample splits.
+
+- **subsample = 0.8**  
+  Uses 80% of the training data for each tree, improving robustness.
+
+- **colsample_bytree = 0.8**  
+  Randomly samples 80% of features per tree to reduce feature dependency.
+
+- **reg_alpha = 0.1 (L1 regularization)**  
+  Encourages sparsity and reduces noise.
+
+- **reg_lambda = 1.0 (L2 regularization)**  
+  Penalizes large weights to improve stability.
+
+- **random_state = 42**  
+  Ensures reproducibility.
+
+#### Model Training
+
+The model was trained using the training dataset:
+
+```python
+regressor.fit(x_train, y_train)
+```
+
+Predictions were generated for both training and test sets to evaluate performance and generalization:
+
+```python
+y_hat_train = regressor.predict(x_train)
+y_hat_test  = regressor.predict(x_test)
+```
