@@ -280,7 +280,7 @@ x = df_model.drop("Item_Outlet_Sales", axis=1)
 y = df_model["Item_Outlet_Sales"]
 ```
 
-- **X (Features):**  
+- **x (Features):**  
   Contains all independent variables that are used to predict sales.  
   The target column `Item_Outlet_Sales` is explicitly removed to prevent data leakage.
 
