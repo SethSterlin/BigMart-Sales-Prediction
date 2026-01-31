@@ -432,3 +432,73 @@ This scatter plot visualizes the relationship between **actual sales** and **pre
   - Product launch forecasting
   - Inventory planning
   - Outlet performance evaluation
+ 
+### Feature Importance Analysis (XGBoost)
+
+This section explains how XGBoost identifies the key drivers of sales and how to interpret the results from a business perspective.
+
+Steps:
+- Extract feature importance from the trained model
+- Map importance values to actual feature names
+- Select the top 10 most important features
+- Visualize them using a horizontal bar chart (barh)
+
+![Dataset Overview](https://github.com/SethSterlin/BigMart-Sales-Prediction/blob/main/top%2010%20driver%20sales.png)
+
+The chart is built using `feature_importances_` from the trained **XGBoost Regressor**.
+
+Each importance score represents how much a feature contributes to reducing prediction error across all decision trees in the model.  
+A higher importance value indicates a stronger influence on sales prediction.
+
+A red color gradient is applied:
+- **Darker bars = more influential features**
+- This helps quickly identify the strongest drivers at a glance
+
+#### Top 10 Sales Drivers – Interpretation
+
+**Outlet Type (Primary Driver)**
+
+The most influential features are related to **Outlet Type**:
+
+- **Supermarket Type1** (highest importance)
+- **Supermarket Type3**
+- **Supermarket Type2**
+
+**Business Insight:**  
+Outlet type is the strongest determinant of sales performance.  
+This reflects differences in customer traffic, store scale, and purchasing power.  
+In practice, *where a product is sold matters more than what the product is*.
+
+**Outlet Size & Pricing (Strong Secondary Drivers)**
+
+- **Outlet_Size_Medium**
+- **Item_MRP**
+
+**Business Insight:**  
+Medium-sized outlets consistently outperform expectations, indicating an optimal balance between foot traffic and product visibility.  
+Price remains an important driver, but its impact is still secondary to store characteristics.
+
+**Location Factors (Supporting Role)**
+
+- **Outlet_Location_Type_Tier 2**
+- **Outlet_Location_Type_Tier 3**
+
+**Business Insight:**  
+Location contributes positively to sales but acts as a supporting factor rather than a primary driver.  
+Store format and size outweigh pure geographic effects.
+
+**Product-Level Factors (Lower Relative Impact)**
+
+- **Item_Visibility**
+- **Item_Type (Fruits & Vegetables)**
+
+**Business Insight:**  
+Product attributes do influence sales; however, their impact is significantly smaller compared to outlet-related factors.  
+This highlights the importance of distribution strategy over individual product features.
+
+**Executive Takeaway**
+
+> **Sales performance is driven more by outlet characteristics than by product attributes.**  
+> Optimizing outlet type, store size, and placement strategy has a greater impact than fine-tuning individual product features.
+
+This insight supports strategic decisions around store expansion, product placement, and channel optimization.
