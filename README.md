@@ -201,14 +201,52 @@ When outlet size information is missing, it is inferred based on the typical siz
 
 | Feature       | Missing Values | Method Used                 | Rationale |
 |--------------|----------------|-----------------------------|-----------|
-| Item_Weight  | 1,463          | Mean Imputation             | Numerical feature with a relatively stable distribution; using the mean preserves overall statistical properties without introducing strong bias |
-| Outlet_Size  | 2,410          | Mode Imputation (by Outlet Type) | Categorical feature highly correlated with outlet format; imputing by group-level mode maintains structural and business consistency |
+| `Item_Weight`  | 1,463          | Mean Imputation             | Numerical feature with a relatively stable distribution; using the mean preserves overall statistical properties without introducing strong bias |
+| `Outlet_Size`  | 2,410          | Mode Imputation (by Outlet Type) | Categorical feature highly correlated with outlet format; imputing by group-level mode maintains structural and business consistency |
 
 This targeted and context-aware approach ensures that:
 
 No records were dropped unnecessarily
 
-Data integrity was preserved
+### Multicollinearity Check (VIF Analysis)
+
+**Multicollinearity** occurs when two or more independent variables in a model are highly correlated with each other.  
+In simple terms, it means **some features are telling almost the same story**.
+
+For example:
+- Product price (MRP) and product weight may be related
+- Store size and store type may overlap in meaning
+
+When multicollinearity exists:
+- Linear models struggle to understand the *true impact* of each variable
+- Coefficients become unstable or misleading
+- Model interpretation becomes unreliable, even if accuracy looks acceptable
+
+**Variance Inflation Factor (VIF)** is a metric used to **measure how much multicollinearity exists** in a feature.
+
+It answers the question:
+
+“How much does this feature overlap with other features in the model?”
+
+General interpretation:
+- **VIF = 1** → No correlation with other features
+- **VIF between 1–5** → Acceptable correlation
+- **VIF > 5** → High multicollinearity (potential problem)
+- **VIF > 10** → Serious multicollinearity (should be fixed)
+
+To assess multicollinearity among key numerical features, Variance Inflation Factor (VIF) was calculated for the main continuous variables used in the model.
+
+| Feature          | VIF Value |
+|------------------|-----------|
+| `Item_Weight`      | 4.75      |
+| `Item_Visibility`  | 2.37      |
+| `Item_MRP`         | 4.38      |
+
+#### Interpretation
+
+- All VIF values are **below the commonly accepted threshold of 5**, indicating that multicollinearity is **not a critical issue** in this dataset.
+- **`Item_Visibility`** shows very low multicollinearity, suggesting it provides largely independent information.
+- **`Item_Weight`** and **`Item_MRP`** exhibit moderate correlation with other features, but remain within an acceptable range.
 
 Downstream models (Linear Regression and XGBoost) could learn from realistic and business-consistent inputs
 
