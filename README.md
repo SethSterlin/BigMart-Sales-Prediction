@@ -503,11 +503,11 @@ Optimizing outlet type, store size, and placement strategy has a greater impact 
 
 This insight supports strategic decisions around store expansion, product placement, and channel optimization.
 
-## Model Comparison: Linear Regression vs XGBoost
+### Model Comparison: Linear Regression vs XGBoost
 
 This project compares a traditional **Linear Regression** model with an advanced **XGBoost Regressor** to evaluate their effectiveness in predicting retail sales in a real-world business dataset.
 
-### Linear Regression (Baseline Model)
+#### Linear Regression (Baseline Model)
 
 **Purpose:**  
 Linear Regression is used as a baseline due to its simplicity and strong interpretability.
