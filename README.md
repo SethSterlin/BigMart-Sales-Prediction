@@ -471,8 +471,8 @@ In practice, *where a product is sold matters more than what the product is*.
 
 **Outlet Size & Pricing (Strong Secondary Drivers)**
 
-- **Outlet_Size_Medium**
-- **Item_MRP**
+- **`Outlet_Size_Medium`**
+- **`Item_MRP`**
 
 **Business Insight:**  
 Medium-sized outlets consistently outperform expectations, indicating an optimal balance between foot traffic and product visibility.  
@@ -480,8 +480,8 @@ Price remains an important driver, but its impact is still secondary to store ch
 
 **Location Factors (Supporting Role)**
 
-- **Outlet_Location_Type_Tier 2**
-- **Outlet_Location_Type_Tier 3**
+- **`Outlet_Location_Type_Tier 2`**
+- **`Outlet_Location_Type_Tier 3`**
 
 **Business Insight:**  
 Location contributes positively to sales but acts as a supporting factor rather than a primary driver.  
@@ -489,8 +489,8 @@ Store format and size outweigh pure geographic effects.
 
 **Product-Level Factors (Lower Relative Impact)**
 
-- **Item_Visibility**
-- **Item_Type (Fruits & Vegetables)**
+- **`Item_Visibility`**
+- **`Item_Type (Fruits & Vegetables)`**
 
 **Business Insight:**  
 Product attributes do influence sales; however, their impact is significantly smaller compared to outlet-related factors.  
@@ -498,7 +498,7 @@ This highlights the importance of distribution strategy over individual product 
 
 **Executive Takeaway**
 
-> **Sales performance is driven more by outlet characteristics than by product attributes.**  
-> Optimizing outlet type, store size, and placement strategy has a greater impact than fine-tuning individual product features.
+**Sales performance is driven more by outlet characteristics than by product attributes.**  
+Optimizing outlet type, store size, and placement strategy has a greater impact than fine-tuning individual product features.
 
 This insight supports strategic decisions around store expansion, product placement, and channel optimization.
