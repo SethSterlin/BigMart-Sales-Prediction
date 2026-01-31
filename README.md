@@ -248,5 +248,10 @@ To assess multicollinearity among key numerical features, Variance Inflation Fac
 - **`Item_Visibility`** shows very low multicollinearity, suggesting it provides largely independent information.
 - **`Item_Weight`** and **`Item_MRP`** exhibit moderate correlation with other features, but remain within an acceptable range.
 
+---
+
+## Analysis Methodology
+![Linear Regression: Actual vs Predicted Sales](https://github.com/SethSterlin/BigMart-Sales-Prediction/blob/main/lr%20scatter.png?raw=true)
+
 Downstream models (Linear Regression and XGBoost) could learn from realistic and business-consistent inputs
 
