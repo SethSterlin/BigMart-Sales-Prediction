@@ -507,7 +507,7 @@ This insight supports strategic decisions around store expansion, product placem
 
 This project compares a traditional **Linear Regression** model with an advanced **XGBoost Regressor** to evaluate their effectiveness in predicting retail sales in a real-world business dataset.
 
-### 🔹 Linear Regression (Baseline Model)
+### Linear Regression (Baseline Model)
 
 **Purpose:**  
 Linear Regression is used as a baseline due to its simplicity and strong interpretability.
@@ -527,7 +527,7 @@ Linear Regression is used as a baseline due to its simplicity and strong interpr
 - Cannot capture **non-linear effects**, **feature interactions**, or **demand spikes**.
 - Struggles with high-sales outlets where business dynamics are more complex.
 
-📌 **Business Interpretation:**  
+**Business Interpretation:**  
 Linear Regression is useful for explaining basic relationships (e.g., outlet type impact) but is not reliable for accurate sales forecasting in real retail environments.
 
 #### XGBoost Regressor (Advanced Model)
@@ -554,7 +554,7 @@ XGBoost is applied to overcome the limitations of linear models by learning non-
 - Learns **interaction effects** between product, outlet, and location features
 - Robust to outliers and skewed sales distributions
 
-📌 **Business Interpretation:**  
+**Business Interpretation:**  
 XGBoost provides significantly more reliable sales forecasts, especially for high-performing outlets and complex demand patterns.
 
 #### Side-by-Side Comparison
