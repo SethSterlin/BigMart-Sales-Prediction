@@ -638,4 +638,40 @@ print(f"Predicted Sales (XGBoost): {pred_xgb[0]:,.2f}")
 ```
 
 **4.Business Interpretation**
+Key Results
+
+**Predicted Sales (Linear Regression): 2,622.85**
+
+**Predicted Sales (XGBoost): 2,526.07**
+
+#### What level of sales should we reasonably expect?
+
+Considering both models, a **reasonable expected sales level per outlet is approximately _2,500–2,600_ per period** (same unit as the target variable).
+
+### How to interpret this for executives
+
+- **Model consensus:**  
+  Although Linear Regression and XGBoost use very different assumptions, their predictions are close (difference ≈ 97), which increases confidence in the estimate.
+
+- **Why XGBoost is more reliable:**  
+  XGBoost demonstrated significantly better test performance (higher R², lower MAE/RMSE). Therefore, **~2,500** should be treated as the **more conservative and realistic baseline**.
+
+- **Business meaning:**  
+  For an outlet with:
+  - Medium size  
+  - Tier 2 location  
+  - Supermarket Type 1  
+  - Snack food category  
+  - Average visibility and pricing  
+
+  The outlet is expected to generate **around 2.5K in sales**, assuming normal operating conditions.
+
+**Recommended usage**
+
+- Use **2,500** as a **baseline forecast** for planning and benchmarking.
+- Treat values **above 2,600** as **outperformance**.
+- Treat values **below 2,300–2,400** as a **potential underperformance signal** requiring investigation (pricing, visibility, assortment, or location factors).
+
+**Bottom line:**  
+> Executives should reasonably expect **~2.5K sales per outlet**, with XGBoost providing the most decision-relevant estimate.
 
