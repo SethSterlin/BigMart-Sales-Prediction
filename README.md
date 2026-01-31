@@ -575,3 +575,67 @@ XGBoost provides significantly more reliable sales forecasts, especially for hig
 - **Linear Regression** is suitable as a baseline and for high-level business interpretation.
 - **XGBoost** is far superior for predictive accuracy and real-world deployment.
 - Retail sales behavior is inherently non-linear and driven by complex interactions, making tree-based models a better choice.
+
+### Using the Model for Sales Prediction (New Product Scenario)
+
+After training both **Linear Regression** and **XGBoost** models, we can use them to estimate sales for a **new product scenario** by manually defining its characteristics.
+
+**“If we launch a new snack product priced at 150, sold in Supermarket Type 1 outlets, located in Tier 2 areas with medium-sized stores, with a product weight of 9.3 grams, approximately 4.5% shelf visibility, and positioned as a regular snack (not low-fat),
+
+what level of sales per outlet should we reasonably expect?”**
+
+**1.Define Business Input Features**
+Example scenario:
+- Product type: Snack Foods
+- Price (MRP): 150
+- Weight: 9.3 grams
+- Shelf visibility: 4.5%
+- Fat content: Regular
+- Outlet: Supermarket Type 1
+- Outlet size: Medium
+- Location: Tier 2
+
+These features are encoded in a dictionary that matches the model’s training features.
+
+```python
+input = {
+    "Item_Weight": 9.3,
+    "Item_Visibility": 0.045,
+    "Item_MRP": 150,
+    "Item_Fat_Content_Regular": 1,
+    "Item_Type_Snack Foods": 1,
+    "Outlet_Size_Medium": 1,
+    "Outlet_Location_Type_Tier 2": 1,
+    "Outlet_Type_Supermarket Type1": 1
+}
+```
+
+**2.Convert Input to Model-Ready Format**
+The input dictionary is converted into a pandas DataFrame and aligned with the model’s feature set.
+
+```python
+input = pd.DataFrame([input])
+input = input.reindex(columns=x_train.columns, fill_value=0)
+```
+
+Why this step is important:
+
+- Ensures the input has exactly the same features as the training data
+
+- Missing features are filled with 0 (for one-hot encoded variables)
+
+- Prevents shape mismatch errors during prediction
+
+**3.Generate Predictions**
+The prepared input is passed to both models to generate sales predictions.
+
+```python
+pred_lr = lr.predict(input)
+print(f"Predicted Sales (Linear Regression): {pred_lr[0]:,.2f}")
+
+pred_xgb = regressor.predict(input)
+print(f"Predicted Sales (XGBoost): {pred_xgb[0]:,.2f}")
+```
+
+**4.Business Interpretation**
+
