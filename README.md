@@ -81,7 +81,9 @@ Each row corresponds to the sales performance of a specific product within a par
 #### Price & Demand Ratios
 
 - **Sales per MRP Unit**: 15.47  
-- **High vs Low Price Sales Ratio**: 2.22  
+- **High vs Low Price Sales Ratio**: 2.22
+
+![Dataset Overview](https://raw.githubusercontent.com/SethSterlin/BigMart-Sales-Prediction/main/Outlet%20Performance%20Overview.png)
 
 This project analyzes **BigMart sales performance across products and outlets** to uncover patterns that directly support a **sales prediction model**. The goal is not only to describe historical performance but to explain *why* certain variables are critical for accurate prediction.
 
@@ -109,4 +111,104 @@ The **Sales per MRP Unit** and the **High vs Low Price Sales Ratio (2.22)** reve
 These findings explain *why* features such as **`ItemCategory`, `OutletType`, `OutletSize`, `ItemVisibility`, and `ItemMRP`** are included in the **machine learning sales prediction model**. The model is therefore grounded not only in statistical performance but also in **clear business logic and real-world behavior**.
 - Optimize outlet strategy and store formats  
 - Improve shelf allocation and visibility planning  
-- Understand price sensitivity and demand behavior  
+- Understand price sensitivity and demand behavior
+
+### Exploratory Data Analysis: Distribution & Outliers
+
+Understanding the **distribution of key numerical variables** is a crucial step before building a predictive model.  
+The following visualizations highlight the **spread, skewness, and presence of outliers** in the BigMart dataset, which directly influence model performance and feature engineering decisions.
+
+#### Item MRP Distribution
+
+| Visualization | Insight |
+|--------------|--------|
+| ![](https://github.com/SethSterlin/BigMart-Sales-Prediction/blob/main/hist%20im.png?raw=true) | The distribution of **Item_MRP (Maximum Retail Price)** shows a **multi-modal pattern**, suggesting that products are grouped into several pricing tiers rather than following a normal distribution. This indicates that pricing strategy plays a significant role in sales behavior. While extreme high-price values exist, they appear to be valid premium products rather than noise, so they were retained for modeling. |
+
+#### Item Visibility Distribution
+
+| Visualization | Insight |
+|--------------|--------|
+| ![](https://github.com/SethSterlin/BigMart-Sales-Prediction/blob/main/hist%20iv.png?raw=true) | **Item_Visibility** is highly **right-skewed** with several extreme values. These outliers may represent products that dominate shelf space or suffer from data recording inconsistencies. Instead of removing them outright, the feature was carefully reviewed, as visibility can be a strong sales driver. In later stages, transformation techniques can help stabilize this distribution. |
+
+#### Item Weight Distribution
+
+| Visualization | Insight |
+|--------------|--------|
+| ![](https://github.com/SethSterlin/BigMart-Sales-Prediction/blob/main/hist%20iw.png?raw=true) | The **Item_Weight** distribution is relatively smooth but contains a few extreme values. These outliers are likely genuine heavy or lightweight items rather than data errors. Since weight may indirectly affect logistics and consumer preference, these values were preserved to maintain real-world variability. |
+
+#### Outlet Sales Distribution
+
+| Visualization | Insight |
+|--------------|--------|
+| ![](https://github.com/SethSterlin/BigMart-Sales-Prediction/blob/main/hist%20os.png?raw=true) | **Outlet_Sales** shows a strong **right-skewed distribution** with notable high-value outliers. These represent top-performing outlets or products with exceptionally strong demand. Such outliers are especially important for prediction tasks, as they help the model learn patterns associated with high sales performance rather than focusing only on average cases. |
+
+
+- Not all outliers are errors — many reflect **real business phenomena** such as premium pricing or high-performing outlets  
+- Blindly removing outliers may distort important sales patterns  
+- Instead of aggressive removal, this project emphasizes **understanding context** and applying transformations only when necessary  
+
+These insights informed subsequent **feature engineering and model selection**, ensuring that the prediction model captures both typical and exceptional sales behaviors.
+
+### Handling Missing Values
+
+Before building predictive models, missing values were carefully examined and handled to ensure data quality and reliable model performance.
+
+From the initial data inspection, only two features contained missing values:
+
+| Feature        | Missing Values |
+|---------------|----------------|
+| `Item_Weight`   | 1,463          |
+| `Outlet_Size`   | 2,410          |
+
+All other variables, including the target variable **`Item_Outlet_Sales`**, had no missing values.
+
+#### 1. Handling Missing Values in `Item_Weight`
+
+```python
+df["Item_Weight"].fillna(df["Item_Weight"].mean(), inplace=True)
+```
+
+**Approach:** Mean Imputation
+
+**Reasoning:**
+`Item_Weight` is a continuous numerical variable representing product weight.
+Since its distribution is relatively stable and does not show extreme skewness, replacing missing values with the **mean weight** helps preserve the overall distribution without introducing bias.
+
+**Business Interpretation:**
+Missing product weights are assumed to be similar to the average weight of existing products, which is a reasonable assumption in retail datasets where product specifications are standardized.
+
+2. Handling Missing Values in `Outlet_Size`
+
+```python
+df["Outlet_Size"] = (
+    df.groupby("Outlet_Type")["Outlet_Size"]
+      .transform(lambda x: x.fillna(x.mode()[0]))
+)
+```
+
+**Approach:** Group-wise Mode Imputation
+
+**Reasoning:**
+`Outlet_Size` is a categorical variable (Small, Medium, High) and is highly related to `Outlet_Type`.
+Instead of using a global mode, missing values were filled using the **most frequent outlet size within each outlet type**.
+
+**Why this matters:**
+Different outlet types (e.g., Grocery Store vs Supermarket Type 3) naturally tend to have different typical sizes.
+This method preserves **structural relationships** in the data and avoids unrealistic combinations.
+
+**Business Interpretation:**
+When outlet size information is missing, it is inferred based on the typical size of similar outlet formats, which aligns with how retail chains are usually standardized.
+
+| Feature       | Missing Values | Method Used                 | Rationale |
+|--------------|----------------|-----------------------------|-----------|
+| Item_Weight  | 1,463          | Mean Imputation             | Numerical feature with a relatively stable distribution; using the mean preserves overall statistical properties without introducing strong bias |
+| Outlet_Size  | 2,410          | Mode Imputation (by Outlet Type) | Categorical feature highly correlated with outlet format; imputing by group-level mode maintains structural and business consistency |
+
+This targeted and context-aware approach ensures that:
+
+No records were dropped unnecessarily
+
+Data integrity was preserved
+
+Downstream models (Linear Regression and XGBoost) could learn from realistic and business-consistent inputs
+
