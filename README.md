@@ -323,7 +323,7 @@ The residual plot shows the difference between **actual sales and predicted sale
 **Business Interpretation:**  
 Sales behavior in high-performing outlets is more complex and volatile, likely influenced by factors such as promotions, store traffic, or demand spikes that a linear model cannot fully explain.
 
-#### Key Takeaways
+#### Linear Regression Key Takeaways
 
 - Linear Regression provides a **solid and interpretable baseline model**.
 - The model explains general sales trends well but has **limited accuracy for high-sales cases**.
