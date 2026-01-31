@@ -177,7 +177,7 @@ Since its distribution is relatively stable and does not show extreme skewness, 
 **Business Interpretation:**
 Missing product weights are assumed to be similar to the average weight of existing products, which is a reasonable assumption in retail datasets where product specifications are standardized.
 
-2. Handling Missing Values in `Outlet_Size`
+#### 2. Handling Missing Values in `Outlet_Size`
 
 ```python
 df["Outlet_Size"] = (
