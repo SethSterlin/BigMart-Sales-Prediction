@@ -28,6 +28,8 @@ This project aims to bridge that gap by combining business analysis and machine 
 
 Tools: `Python`
 
+The analysis was conducted using a Jupyter Notebook environment on Google Colab. You can view the notebook [here]().
+
 ---
 
 ## Data Structure, Initial Checks, and Key Concepts
