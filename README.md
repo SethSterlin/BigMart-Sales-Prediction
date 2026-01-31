@@ -395,7 +395,7 @@ The XGBoost model was configured with carefully selected hyperparameters to bala
 - **random_state = 42**  
   Ensures reproducibility.
 
-#### XGBoost Model Training
+#### Model Training - XGBoost
 
 The model was trained using the training dataset:
 
