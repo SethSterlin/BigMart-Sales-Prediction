@@ -242,7 +242,7 @@ To assess multicollinearity among key numerical features, Variance Inflation Fac
 | `Item_Visibility`  | 2.37      |
 | `Item_MRP`         | 4.38      |
 
-#### Interpretation
+#### Multicollinearity Interpretation
 
 - All VIF values are **below the commonly accepted threshold of 5**, indicating that multicollinearity is **not a critical issue** in this dataset.
 - **`Item_Visibility`** shows very low multicollinearity, suggesting it provides largely independent information.
