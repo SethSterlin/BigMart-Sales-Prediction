@@ -28,7 +28,7 @@ This project aims to bridge that gap by combining business analysis and machine 
 
 Tools: `Python`
 
-The analysis was conducted using a Jupyter Notebook environment on Google Colab. You can view the notebook [here]().
+The analysis was conducted using a Jupyter Notebook environment on Google Colab. You can view the notebook [here](https://github.com/SethSterlin/BigMart-Sales-Prediction/blob/main/Big_Mart_Project.ipynb).
 
 ---
 
