@@ -16,7 +16,17 @@ Traditional linear assumptions often fail to capture real consumer behavior
 
 This project aims to bridge that gap by combining business analysis and machine learning to answer a core business question:
 
-> “Given a product’s price, visibility, and outlet characteristics, what level of sales should we realistically expect per outlet?”
+**“Given a product’s price, visibility, and outlet characteristics, what level of sales should we realistically expect per outlet?”**
+
+### Project Highlights
+
+- Built an end-to-end retail sales prediction pipeline from EDA to machine learning  
+- Used Linear Regression as a baseline and XGBoost to capture non-linear sales drivers  
+- XGBoost improved prediction accuracy by ~50% RMSE over Linear Regression  
+- Identified outlet characteristics as stronger sales drivers than product attributes  
+- Estimated realistic expected sales of **~2,500 per outlet** for business planning
+
+Tools: `Python`
 
 ---
 
@@ -676,5 +686,50 @@ Considering both models, a **reasonable expected sales level per outlet is appro
 - Treat values **below 2,300–2,400** as a **potential underperformance signal** requiring investigation (pricing, visibility, assortment, or location factors).
 
 **Bottom line:**  
-> Executives should reasonably expect **~2.5K sales per outlet**, with XGBoost providing the most decision-relevant estimate.
+**Executives should reasonably expect **~2.5K sales per outlet**, with XGBoost providing the most decision-relevant estimate.**
 
+## Recommendation & Business Usage
+
+Based on the sales prediction results from both models:
+
+- **Predicted Sales (Linear Regression):** 2,622.85  
+- **Predicted Sales (XGBoost):** 2,526.07  
+
+**Recommended Expected Sales per Outlet**
+
+A **reasonable and defensible expected sales level per outlet is approximately 2,500–2,600 per period**  
+(using the same unit as `Item_Outlet_Sales`).
+
+**Why this range is appropriate**
+
+- Both models, despite different assumptions, produce **very similar predictions** (difference ≈ 97), increasing confidence in the estimate.
+- **XGBoost is preferred for decision-making** due to:
+  - Higher test R²
+  - Lower MAE and RMSE
+  - Better handling of non-linear demand and outlet-level interactions
+
+Therefore, **~2,500** should be treated as the **baseline forecast**, while **~2,600** represents an optimistic but still realistic outcome.
+
+**Practical Business Interpretation**
+
+For a product with the following characteristics:
+- Snack Foods category
+- MRP ≈ 150
+- Regular fat content
+- Medium-sized outlet
+- Supermarket Type 1
+- Tier 2 location
+- Average shelf visibility
+
+The outlet should be expected to generate **around 2.5K in sales under normal operating conditions**.
+
+**Actionable Guidance**
+
+- **Baseline planning target:** ~2,500  
+- **Outperformance benchmark:** > 2,600  
+- **Underperformance signal:** < 2,300–2,400  
+  - Investigate pricing, shelf visibility, assortment fit, or outlet characteristics
+
+**Executive Takeaway**
+
+Use **XGBoost-based predictions (~2.5K)** as the primary reference for forecasting, inventory planning, and outlet performance benchmarking.
