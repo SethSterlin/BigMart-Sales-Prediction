@@ -694,6 +694,24 @@ Considering both models, a **reasonable expected sales level per outlet is appro
 **Bottom line:**  
 **Executives should reasonably expect **~2.5K sales per outlet**, with XGBoost providing the most decision-relevant estimate.**
 
+---
+
+## Business Insights
+
+- **Outlet characteristics drive sales more than product attributes.**  
+  XGBoost reveals that outlet type and outlet size are the strongest sales drivers, indicating that *where* a product is sold matters more than *what* is sold.
+
+- **Medium-sized supermarkets deliver the best sales efficiency.**  
+  Medium outlets consistently outperform small and large ones, suggesting an optimal balance between customer traffic and operational efficiency.
+
+- **Sales behavior is highly non-linear.**  
+  Linear models fail to capture high-sales scenarios, while XGBoost reduces prediction error by ~50%, proving that real-world retail demand requires non-linear modeling.
+
+- **Price matters, but not alone.**  
+  Higher-priced items still perform well when supported by the right outlet format, confirming price sensitivity without eliminating premium demand
+
+---
+
 ## Recommendation & Business Usage
 
 Based on the sales prediction results from both models:
