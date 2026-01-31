@@ -1,6 +1,6 @@
 ![Dataset Overview](https://github.com/SethSterlin/BigMart-Sales-Prediction/blob/main/dataset-card.jpg?raw=true)
 
-# BigMart Sales Prediction
+# BigMart Sales Prediction (XGBoost)
 ## Project Background
 
 BigMart is a retail chain operating multiple outlet formats across different locations and store sizes.
